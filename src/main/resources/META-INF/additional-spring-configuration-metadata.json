@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "gradebook.service",
+    "type": "java.lang.String",
+    "description": "A description for 'gradebook.service'"
+  },
+  {
+    "name": "registration.service",
+    "type": "java.lang.String",
+    "description": "A description for 'registration.service'"
+  }
+]}
