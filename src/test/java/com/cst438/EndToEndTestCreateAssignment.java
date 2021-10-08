@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class EndToEndTestCreateAssignment {
-    public static final String URL = "dasu20-cst348-gradebook-be.herokuapp.com/";
+    public static final String URL = "dasu20-cst348-gradebook-fe.herokuapp.com/";
     public static final String TEST_USER_EMAIL = "test@csumb.edu";
     public static final String TEST_INSTRUCTOR_EMAIL = "dwisneski@csumb.edu";
     public static final int SLEEP_DURATION = 1000; // 1 second.
@@ -34,24 +34,24 @@ public class EndToEndTestCreateAssignment {
     @Test
     public void createAssignmentTest() throws Exception {
         Course course = new Course();
-        course.setCourse_id(99992);
+        course.setCourse_id(4001);
         course.setInstructor(TEST_INSTRUCTOR_EMAIL);
         course.setSemester("Fall");
         course.setYear(2021);
-        course.setTitle("Test Course");
+        course.setTitle("CST 438");
 
         Assignment a = new Assignment();
         course.setAssignments(Arrays.asList(a));
         a.setCourse(course);
 
         a.setDueDate(new java.sql.Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
-        a.setName("TEST ASSIGNMENT");
+        a.setName("Assignment 5");
         a.setNeedsGrading(1);
 
         Enrollment enrollment = new Enrollment();
         enrollment.setCourse(course);
         enrollment.setStudentEmail(TEST_USER_EMAIL);
-        enrollment.setStudentName("Test");
+        enrollment.setStudentName("Dabid Subbiban");
 
         Course savedCourse = courseRepository.save(course);
         Assignment savedAssignment = assignmentRepository.save(a);
@@ -68,8 +68,10 @@ public class EndToEndTestCreateAssignment {
         try {
             driver.findElements(By.xpath("//a")).get(1).click();
             Thread.sleep(SLEEP_DURATION);
+			
             driver.findElement(By.id("name")).sendKeys("Assignment1");
             driver.findElement(By.id("dueDate")).sendKeys("09-05-2021");
+			
             driver.findElement(By.id("course")).sendKeys(String.valueOf(savedCourse.getCourse_id()));
             driver.findElements(By.xpath("//input")).get(3).click();
             Thread.sleep(SLEEP_DURATION);

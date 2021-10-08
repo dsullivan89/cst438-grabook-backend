@@ -63,18 +63,18 @@ public class EndToEndTestSubmitGrades {
 
 //		Database setup:  create course		
 		Course c = new Course();
-		c.setCourse_id(99999);
+		c.setCourse_id(44559);
 		c.setInstructor(TEST_INSTRUCTOR_EMAIL);
 		c.setSemester("Fall");
 		c.setYear(2021);
-		c.setTitle("Test Course");
+		c.setTitle("CST 438");
 
 //	    add an assignment that needs grading for course 99999
 		Assignment a = new Assignment();
 		a.setCourse(c);
 		// set assignment due date to 24 hours ago
 		a.setDueDate(new java.sql.Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
-		a.setName("TEST ASSIGNMENT");
+		a.setName("Assignment 5");
 		a.setNeedsGrading(1);
 
 //	    add a student TEST into course 99999
