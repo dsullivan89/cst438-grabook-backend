@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ import com.cst438.domain.GradebookDTO;
 import com.cst438.services.RegistrationService;
 
 @RestController
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class GradeBookController {
 
@@ -41,6 +43,7 @@ public class GradeBookController {
 
     // get assignments for an instructor that need grading
     @GetMapping("/gradebook")
+	@GetMapping(value = "/private")
     public AssignmentListDTO getAssignmentsNeedGrading() {
 
         String email = "dwisneski@csumb.edu";  // user name (should be instructor's email)
@@ -54,6 +57,7 @@ public class GradeBookController {
     }
 
     @GetMapping("/gradebook/{id}")
+	@GetMapping(value = "/private")
     public GradebookDTO getGradebook(@PathVariable("id") Integer assignmentId) {
 
         String email = "dwisneski@csumb.edu";  // user name (should be instructor's email)
