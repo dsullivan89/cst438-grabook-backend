@@ -3,6 +3,7 @@ package com.cst438.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.cst438.domain.EnrollmentDTO;
 import com.cst438.domain.EnrollmentRepository;
 
 @RestController
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class EnrollmentController {
 
@@ -31,6 +33,7 @@ public class EnrollmentController {
      */
     @PostMapping("/enrollment")
     @Transactional
+	@GetMapping(value = "/private")
     public EnrollmentDTO addEnrollment(@RequestBody EnrollmentDTO enrollmentDTO) {
         Enrollment enrollment = new Enrollment();
 
